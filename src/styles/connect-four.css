@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  background-color: rgb(50,50,50);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 1rem;
+  background-color: red;
+}
+
+button {
+  font-size: 1.5rem;
+  background: color-mix(in srgb, #3018bb 96%, #fff 4%);
+  color: #fff;
+  box-shadow: 0 0 .8rem #fff;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: color-mix(in srgb, #3018bb 90%, #fff 10%);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2rem;
+}
+
+aside {
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  padding: 1rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(40,40,40,.8);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlighted-text {
+  font-size: 2rem;
+  color: #a000dd;
+}
+
+#status {
+  font-size: 4rem;
+}
