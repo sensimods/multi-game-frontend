@@ -6,10 +6,9 @@ import { useParams } from 'react-router-dom'
 import GameContainer from '../components/GameContainer'
 // import Pong from '../games/Pong'
 // import Poker from '../games/Poker'
-import WordSearch from '../games/singlePlayer/Wordsearch'
-
+import Wordsearch from '../games/singlePlayer/word'
 const gameComponents = {
-  'wordsearch': WordSearch
+  'wordsearch': Wordsearch
 }
 
 const SinglePlayerPage = () => {

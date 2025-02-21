@@ -8,6 +8,7 @@ import {toast} from 'react-toastify'
 import {useDispatch, useSelector} from 'react-redux'
 import { useLoginMutation } from '../slices/usersApiSlice'
 import { setCredentials } from '../slices/authSlice'
+// import { apiSlice } from '../slices/apiSlice'
 
 const LoginPage = () => {
 
@@ -21,6 +22,11 @@ const LoginPage = () => {
 
   const {userInfo} = useSelector(state => state.auth)
 
+  // useEffect(() => {
+  //   // Reset the API state when the login page loads
+  //   dispatch(apiSlice.util.resetApiState())
+  // }, [dispatch])
+
   useEffect(() => {
     if(userInfo) {
       navigate('/games')
@@ -31,7 +37,9 @@ const LoginPage = () => {
     e.preventDefault()
     try {
       const res = await login({email, password}).unwrap()
+     // console.log('Login response:', res) // Check what's in the response
       dispatch(setCredentials({...res}))
+      ////console.log('After dispatch - userInfo:', userInfo) // Check state after dispatch
       navigate('/games')
     } catch (err) {
       toast.error(err?.data?.message || err.error)

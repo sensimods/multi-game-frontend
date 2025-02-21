@@ -35,7 +35,13 @@ const Wordsearch = () => {
   const gridSize = { easy: 9, medium: 12, hard: 20 };
 
   
-  
+  useEffect(() => {
+    console.log('userInfo: ', userInfo)
+    setBestScores(prevState => ({
+      ...prevState,
+      easy: userInfo.bestScores.length > 0 ? userInfo.bestScores : 0
+    }))
+  }, [userInfo])
 
   useEffect(() => {
   if (canvasRef.current) {

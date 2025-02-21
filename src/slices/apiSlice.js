@@ -6,4 +6,5 @@ export const apiSlice = createApi({
   baseQuery,
   tagTypes: ['User'], //tag types for caching to prevent making api calls when not needed. 'products', 'blog posts' would be examples of others
   endpoints: (builder) => ({}),
+  //keepUnusedDataFor: 0, // Add this line
 })

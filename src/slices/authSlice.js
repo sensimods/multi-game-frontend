@@ -52,7 +52,8 @@ const authSlice = createSlice({
           level: action.payload.level,
           xpToNextLevel: action.payload.xpToNextLevel,
           gamesPlayed: action.payload.gamesPlayed,
-          gamesWon: action.payload.gamesWon
+          gamesWon: action.payload.gamesWon,
+          bestScores: action.payload.bestScores
         };
         state.userInfo = updatedUserInfo;
         localStorage.setItem('userInfo', JSON.stringify(updatedUserInfo));

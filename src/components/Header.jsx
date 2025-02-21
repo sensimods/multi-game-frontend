@@ -73,7 +73,7 @@ const Header = () => {
             </Nav>
             
 
-              <LevelProgress level={userInfo.level || 0} currentXP={userInfo.xp || 0} nextLevelXP={userInfo.xpToNextLevel} />
+           {userInfo &&  <LevelProgress level={userInfo?.level || 0} currentXP={userInfo?.xp || 0} nextLevelXP={userInfo?.xpToNextLevel || 0} />}
 
               
           </Navbar.Collapse>

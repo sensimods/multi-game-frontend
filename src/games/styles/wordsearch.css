@@ -1,0 +1,174 @@
+/* * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem;
+} */
+
+.game-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.game-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.game-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 150px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #00ff88;
+  margin-bottom: 0.5rem;
+}
+
+.game-content {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 2rem;
+  justify-items: center;
+  align-items: start;
+}
+
+.word-list {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.word-list h3 {
+  color: #00ff88;
+  margin-bottom: 1rem;
+}
+
+.word-list ol {
+  list-style-position: inside;
+  color: #fff;
+}
+
+.word-list li {
+  margin: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.word-list li.found {
+  color: #00ff88;
+  text-decoration: line-through;
+}
+
+#wordsearchCanvas {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+}
+
+.game-controls {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.difficulty-select {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.start-btn {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background: #00ff88;
+  color: #1a1a2e;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+  background: #00cc6a;
+  transform: translateY(-2px);
+}
+
+
+
+
+
+.player-stats {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px;
+  flex: 1;
+}
+
+.found-p1 {
+  color: green;
+  text-decoration: line-through;
+}
+
+.found-p2 {
+  color: orange;
+  text-decoration: line-through;
+}
+
+.game-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+
+
+
+
+
+@media (max-width: 1024px) {
+  .game-content {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+  }
+
+  .word-list, .game-controls {
+      max-width: 400px;
+      margin: 0 auto;
+  }
+}

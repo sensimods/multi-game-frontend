@@ -12,6 +12,8 @@ const GamesPage = () => {
 
   const [socket, setSocket] = useState(null)
 
+  
+
    // Initialize socket connection
    useEffect(() => {
       const newSocket = io('http://192.168.2.51:5000')
