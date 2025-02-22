@@ -261,7 +261,7 @@ const ConnectFour = () => {
     const newGameId = Math.random().toString(36).substring(2, 9)
     setActiveGameId(newGameId)
     setIsHost(true)
-    socket.emit('createGame', 'connectFour', newGameId, userInfo.username)
+    socket.emit('joinGame', 'connectFour', newGameId, userInfo.username)
   }
 
   const handleJoinGame = () => {

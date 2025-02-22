@@ -42,7 +42,6 @@ const WordSearch = () => {
   const [gameIdInput, setGameIdInput] = useState('')
   const [player1Username, setPlayer1Username] = useState(null)
   const [player2Username, setPlayer2Username] = useState(null)
-  const [opponentsFoundWords, setOpponentsFoundWords] = useState([])
 
   
 
@@ -64,32 +63,23 @@ const WordSearch = () => {
       if (updatedGame.player2 && !player2Username) {
         setPlayer2Username(updatedGame.player2)
         setDifficulty(updatedGame.difficulty)
+      }
+
+      if(updatedGame.player1 !== null && updatedGame.player2 !== null){
+        console.log('player one and player two are now here')
+        setPlayer1Username(updatedGame.player1)
+        setPlayer2Username(updatedGame.player2)
         setDifficulty(updatedGame.difficulty)
         initEmptyGrid(gridSize[updatedGame.difficulty]);
         setWords(updatedGame.words)
         setGameActive(true)
       }
-
-      if(updatedGame.player1 !== null && updatedGame.player2 !== null){
-        // console.log('player one and player two are now here')
-        // setPlayer1Username(updatedGame.player1)
-        // setPlayer2Username(updatedGame.player2)
-        // setDifficulty(updatedGame.difficulty)
-        // initEmptyGrid(gridSize[updatedGame.difficulty]);
-        // setWords(updatedGame.words)
-        // setGameActive(true)
-        const opponent = isHost ? 'player2' : 'player1'
-        console.log('found words: ', updatedGame.foundWords[opponent])
-        setOpponentsFoundWords(updatedGame.foundWords[opponent])
-
-      }
-
-
+      console.log(updatedGame)
       // setWords(updatedGame.words)
       // setGameActive(true)
     })
 
-    if(player1Username !== null && player2Username !== null && !gameActive){
+    if(player1Username !== null && player2Username !== null){
       setGameActive(true)
     }
     setGameActive(true)
@@ -110,7 +100,7 @@ const WordSearch = () => {
   function initEmptyGrid(size) {
   const newGrid = Array.from({ length: size }, () => Array(size).fill(""));
   setGrid(newGrid);
-  //setWords([]); // Clear words
+  setWords([]); // Clear words
   setFoundWords(new Set());
   setFoundWordCoordinates(new Map());
   setGameActive(false);
@@ -157,8 +147,6 @@ useEffect(() => {
     setGrid(newGrid);
     startTimer();
   }
-
-  // console.log('words: ', words)
 }, [words, gameActive, difficulty]);
 
   // Redraw grid when it changes
@@ -168,33 +156,37 @@ useEffect(() => {
     }
   }, [grid]);
 
-  // useEffect(() => {
-  //   console.log('words: ', words)
-  // }, [words])
+ 
 
-  // gameType: 'connectFour',
-  // gameId: activeGameId,
-  // moveData: col,
-  // player
-  // useEffect(() => {
-  //   if(!socket) return
-  //   console.log(foundWords)
-  //   const player = isHost ? 'player1' : 'player2'
-
-
-
-  //   socket.emit('makeMove', {
-  //     gameType: 'wordSearch',
-  //     gameId: activeGameId,
-  //     foundWords,
-  //     player,
-  //   })
-
-  //   return () => {
-  //     socket.off('makeMove')
-  //   }
-  // }, [socket, foundWords])
-
+//   async function generateWords(size) {
+//   try {
+//     const numberOfWordsToRequest = size * 2;
+//     const response = await fetch(`https://random-word-api.herokuapp.com/word?number=${numberOfWordsToRequest}`);
+//     const data = await response.json();
+    
+//     let filteredWords = data
+//       .map(word => word.toUpperCase())
+//       .filter(word => word.length <= size && word.length >= 3);
+    
+//     if (filteredWords.length < size - 2) {
+//       const additionalResponse = await fetch(`https://random-word-api.herokuapp.com/word?number=${numberOfWordsToRequest}`);
+//       const additionalData = await additionalResponse.json();
+      
+//       const additionalWords = additionalData
+//         .map(word => word.toUpperCase())
+//         .filter(word => word.length <= size && word.length >= 3);
+        
+//       filteredWords = [...filteredWords, ...additionalWords];
+//     }
+    
+//     const finalWords = filteredWords.slice(0, size - 2);
+//     setWords(finalWords);
+//   } catch (error) {
+//     console.error("Error fetching words:", error);
+//     const fallbackWords = ["HELLO", "WORLD", "PLAY", "FUN", "GAME"].slice(0, size - 2);
+//     setWords(fallbackWords);
+//   }
+// }
 
 
   function placeWords(grid) {
@@ -222,7 +214,6 @@ useEffect(() => {
     if (unplacedWords.length > 0) {
       setWords(prevWords => prevWords.filter(word => !unplacedWords.includes(word)));
     }
-
   }
 
   function tryPlaceWord(word, row, col, direction, grid) {
@@ -536,17 +527,6 @@ useEffect(() => {
         // Immediately update the visual state
         setFoundWords(newFoundWords);
         setFoundWordCoordinates(newFoundWordCoordinates);
-
-        const player = isHost ? 'player1' : 'player2'
-
-        console.log('new found words local state: ', newFoundWords)
-
-        socket.emit('makeMove', {
-          gameType: 'wordSearch',
-          gameId: activeGameId,
-          moveData: [...newFoundWords],
-          player,
-        })
         
         // Force immediate redraw with new state
         const ctx = ctxRef.current;
@@ -704,22 +684,8 @@ useEffect(() => {
             Start New Game
           </button>
         </div>) : (
-          <div className='game-controls'>
-            <div className="word-list">
-
-              <h3>Oppnents Found Words:</h3>
-              <ol ref={wordListRef}>
-                {opponentsFoundWords.map((word, i) => (
-                  <li 
-                    key={i} 
-                    // id={`word-${word}`}
-                    className={opponentsFoundWords.includes(word) ? 'found-p2' : ''}
-                  >
-                    {word}
-                  </li>
-                ))}
-              </ol>
-            </div>
+          <div>
+            <p>Show words that opponent has found</p>
           </div>
         )}
         
