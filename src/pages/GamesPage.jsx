@@ -25,15 +25,18 @@ const GamesPage = () => {
     useEffect(() => {
       if(!socket) return
 
-      socket.on('getGames', (a) => {
-        console.log('games: ', a)
+      socket.on('allGames', (games) => {
+        console.log('games: ', games)
+        for (const [gameId, gameData] of Object.entries(games)) {
+          console.log(`Game ID: ${gameId}`, gameData);
+        }
       })
 
     }, [socket])
 
   return (
     <>
-      <h1 className='text-center'>Multiplayer Games</h1>
+      <h1 className='text-center'>Games</h1>
       <div className='py-4'>
         <Row>
           <Col xs={6} md={4}>
